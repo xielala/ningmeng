@@ -1,10 +1,11 @@
 #软件测试工程师类
 class TesterEngineer:
 
-    #初始化函数，在java里叫构造函数
-    def __init__(self,name,sex):
+    #初始化函数，在java里叫构造函数  这里没有return返回值
+    def __init__(self,name,sex='女'):
         self.name=name
         self.sex=sex
+        self.height=155
 
 
     #属性值
@@ -16,7 +17,8 @@ class TesterEngineer:
     def coding(self,lines,language='python'):
         print(self.name+"用{0}语言写了{1}行代码".format(language,lines))
 
-    def api_test(self):
+    def test(self,*args):
+        self.cooking(*args)
         print("我会做性能测试")
 
     def cooking(self,*args):
@@ -24,6 +26,7 @@ class TesterEngineer:
             print("我会做{0}".format(item))
 
     def play_game(self,game_name):
+        self.cooking('火锅')
         return ('我会玩{0}'.format(game_name))
 
     @classmethod  #类方法
@@ -38,8 +41,9 @@ t=TesterEngineer('花花',18)
 
 #什么时候使用初始化函数
 #如果某个属性是多个函数共用的  就可以使用初始化函数
-t.coding(20)
-t.coding(2000,'java')
-t.cooking('青椒炒肉','番茄炒蛋','宫保鸡丁')
-print(t.play_game('王者荣耀'))
-t.sing('稻香')
+# t.coding(20)
+# t.coding(2000,'java')
+# t.cooking('青椒炒肉','番茄炒蛋','宫保鸡丁')
+# print(t.play_game('王者荣耀'))
+# t.sing('稻香')
+t.test('豆腐','冬瓜')

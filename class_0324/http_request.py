@@ -34,6 +34,7 @@ header={"User-Agent":"Mozilla/5.0"}  #这个是伪装的
 # 为啥要伪装，服务器识别处理会拒绝  反爬虫  改下user-agent
 recharge_res=requests.get(recharge_url,recharge_data,cookies=res.cookies,headers=header)
 print("充值结果：",recharge_res)
+print("user-argunt",recharge_res.request.headers)
 
 print("代理User-Agent",recharge_res.request.headers) # 获取请求头一定要带
 #图片 短信  验证码怎么办？

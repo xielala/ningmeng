@@ -1,6 +1,7 @@
 
 
 import unittest
+import HTMLTestRunner
 # from class_0405_unittest.class_01 import TestMathMethod
 
 suite=unittest.TestSuite()#存储用例
@@ -17,7 +18,14 @@ loader=unittest.TestLoader()#创建一个加载器
 from class_0405_unittest import class_01 #具体到模块
 suite.addTest(loader.loadTestsFromModule(class_01))
 
-# 执行
-runner=unittest.TextTestRunner()
-runner.run(suite)
+# # 执行   上下文管理器  --原始的
+# with open('test.txt','w+', encoding='utf-8') as file:
+#     runner=unittest.TextTestRunner(stream=file, verbosity=2)  #0 1 2  2是最详细的
+#     runner.run(suite)
+# print(file.close())
 
+
+# 新鲜 html
+with open('test.test_report.html','wb') as  file:
+    runner=HTMLTestRunner.HTMLTestRunner(stream=file, verbosity=1, title="python learn", description='测试报告')
+    runner.run(suite)

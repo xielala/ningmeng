@@ -28,6 +28,8 @@ print('excepted:{}，类型是：{}'.format(sheet.cell(1,3).value,type(sheet.cel
 print('method:{}，类型是：{}'.format(sheet.cell(1,4).value,type(sheet.cell(1,4).value)))
 
 
+#eval()  把数据类型转换为原始类型
+
 # 作业
 # 1.把这些数据存在Excel里面，格式请看视频
 # 2.利用openpyxl写一个专门读取Excel里面测试数据的类

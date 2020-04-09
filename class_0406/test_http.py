@@ -5,8 +5,12 @@ import unittest
 from class_0405_unittest.math_method import MathMethod
 from class_0406.get_data import GetData
 from API_AUTO.tools.http_request import HttpRequest
+from class_0406.do_excel.do_excel2 import DoExcel
+from ddt import ddt,data,unpack
 
+test_data=DoExcel('test.xlsx', 'python').get_data('all')
 
+@ddt
 class TestMathMethod(unittest.TestCase):
 
     def setUp(self): #
@@ -15,19 +19,19 @@ class TestMathMethod(unittest.TestCase):
     def tearDown(self):
         print('已经执行完毕用例')
 
-
-    def test_add_two_positive(self):
+    @data(*test_data)
+    def test_add_two_positive(self,item):
         global COOKIE
         data={'mobile':11111111,'pwd':123456}
-        res=HttpRequest().http_request(self,login_url,data,'get')
+        res=HttpRequest().http_request(self,eval(item['url']),eval(item['data']),eval(item['get']))
         if res.cookies:
             setattr(GetData,'Cookie',res.cookies)
 
-    def test_add_two_zero(self):
+    def test_add_two_zero(self,item):
         data = {'mobile': 11111111, 'pwd': 123456}
-        res = HttpRequest().http_request(self, login_url, data, 'post',getattr(GetData,'Cookie'))
+        res = HttpRequest().http_request(self, eval(item['url']),eval(item['data']),eval(item['get']),getattr(GetData,'Cookie'))
         try:
-            self.assertEqual(1, res,'两个0相加出错了')
+            self.assertEqual(1, res,item['excepted'])
         except AssertionError as e:
             print("出错了，断言错误是:",e)
             raise e
